@@ -1,0 +1,27 @@
+trigger:
+  - none
+
+jobs:
+- job: Build
+  pool:
+    vmImage: 'windows-latest'
+
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '17.x'
+      checkLatest: true
+
+
+  - task: Npm@1
+    inputs:
+      command: 'install'
+      workingDir: './ui'
+    displayName: npm Install
+
+  - task: Npm@1
+    inputs:
+      command: 'custom'
+      workingDir: './ui'
+      customCommand: 'run build'
+    displayName: npm Run Build

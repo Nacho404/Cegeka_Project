@@ -1,0 +1,211 @@
+.App {
+  text-align: center;
+}
+
+#form-buttons {
+  margin: 20px 0 10px 0;
+  max-width: 500px;
+  display: flex;
+  justify-content: end;
+}
+
+#form-button-submit {
+  margin-right: 20px;
+  color: red;
+  border: 1px solid white;
+}
+
+#form-button-submit:hover, #confirmation-button-yes:hover {
+  background-color: #ffcccc;
+  border: 1px solid red;
+}
+
+#confirmation-button-no:hover {
+  background-color: #d1e6fa;
+  border: 1px solid #1976d2;
+}
+
+#project-form-buttons {
+  display: flex;
+  justify-content: end;
+  margin: 20px;
+  padding-right: 55px;
+}
+
+#project-form-buttons .button-formular-style {
+  border: 1px solid white;
+  margin-right: 15px;
+}
+
+#project-form-buttons .button-formular-style:hover {
+  background-color: #d1e6fa;
+  border: 1px solid #1976d2;
+}
+
+#form-buttons .button-formular-style {
+  border: 1px solid white;
+  margin-left: 15px;
+}
+
+#form-buttons .button-formular-style:hover {
+  background-color: #d1e6fa;
+  border: 1px solid #1976d2;
+}
+
+#confirmation-button-yes {
+  color: red;
+  border: 1px solid white;
+}
+
+#nomenclature-title {
+  margin: 20px 40px 20px 40px;
+}
+
+#container-back-and-add-buttons{
+  margin: 20px 40px 20px 40px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#container-data-grid {
+  margin: 40px;
+  height: 631px;
+  width: auto;
+}
+
+.title {
+  position: relative;
+  float: left;
+  top: 15px;
+  left: 48px;
+  font-size: 40px;
+  font-weight: bold;
+
+}
+
+.table {
+  position: relative;
+  clear: both;
+  top: 70px;    
+}
+
+.table > hr{
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  
+  
+
+}
+
+.blue-cell {
+  color: #3563cf;
+}
+
+.buttonContainer {
+  position: relative;
+  float: left;
+  clear: both;
+  top: 30px;
+  bottom: 10px;
+  left: 50px;
+  background:  #33ccff;
+
+}
+
+.title > hr {
+  color: grey;
+}
+
+.gif-container{
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top:20px;
+}
+
+#container-add-edit-project {
+  margin:20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+#selects-form-container {
+  max-width: 500px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#checkboxes-container {
+  max-width: 500px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#text-fields-container {
+  max-width: 600px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+}
+
+#details-view-page-container {
+  margin:0;
+  padding:30px 0 30px 0;
+}
+
+#details-view-page-container #details{
+  padding-top:30px;
+  margin: 0 20px 0 20px;
+  border-radius: 7px;
+  display:flex;
+  align-content: center;
+  justify-content: space-evenly;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+#details-view-page-container span {
+  color: #1976d2;
+}
+
+#title-normative {
+  margin: 40px 20px 0 20px;
+  text-align: start;
+}
+
+#scrollable-normative {
+  font-weight: bold;
+  height: 500px;
+  overflow: scroll;
+  margin: 40px 20px 0 20px;
+  padding: 10px;
+  border: 2px solid gray;
+  border-radius: 7px;
+}
+
+#project-building-materials-list {
+  margin: 0;
+  padding: 0;
+  margin-left:5px;
+  border: 1px solid black;
+  border-radius: 3%;
+  color: #1976d2;
+  max-height: 110px;
+  overflow: scroll;
+}
+
+#project-building-materials-list li {
+  list-style: none;
+  padding: 10px;
+}
+
+#project-building-materials-list li:first {
+  padding-top: 0 !important;
+}

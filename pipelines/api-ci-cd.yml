@@ -1,0 +1,41 @@
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+      - api
+
+variables:
+  buildConfiguration: 'Release'
+
+jobs:
+- job: Build
+  pool:
+    vmImage: 'windows-latest'
+
+  steps:     
+  - script: dotnet build ./api --configuration $(buildConfiguration)
+    displayName: Build Solution
+
+  - script: dotnet test ./api --no-build --configuration $(buildConfiguration) --logger trx --results-directory $(Agent.TempDirectory)/TestResults 
+    displayName: Run Unit Tests
+
+  - task: PublishTestResults@2
+    displayName: 'Publish Test Results'
+    inputs:
+      testResultsFormat: 'VSTest'
+      testResultsFiles: '**/TestResults/*.trx'
+      searchFolder: '$(Agent.TempDirectory)'
+    condition: succeededOrFailed()
+
+  - script: dotnet publish ./api/NbcArchitect.Web --configuration $(buildConfiguration) --no-build --output $(Build.ArtifactStagingDirectory)/build 
+    displayName: 'Dotnet Publish NbcArchitect.Web'
+  - task: AzureRmWebAppDeployment@4
+    inputs:
+      ConnectionType: 'AzureRM'
+      azureSubscription: 'FireNormative'
+      appType: 'webAppLinux'
+      WebAppName: 'wa-nbc-architect-api-dev'
+      packageForLinux: '$(Build.ArtifactStagingDirectory)/build'
+      RuntimeStack: 'DOTNETCORE|6.0'

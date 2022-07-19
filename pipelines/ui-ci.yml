@@ -1,0 +1,50 @@
+trigger:
+  branches:
+    include:
+    - main
+  paths:
+    include:
+    - ui
+
+variables:
+  - name: NPM_CACHE_FOLDER
+    value: $(System.DefaultWorkingDirectory)/ui/node_modules
+
+jobs:
+- job: Build
+  pool:
+    vmImage: 'windows-latest'
+
+  steps:
+  - task: Cache@2
+    inputs:
+      key: '"npm" | "$(Agent.OS)" | ui/package-lock.json'
+      path: $(NPM_CACHE_FOLDER)
+    displayName: Cache NPM packages
+ 
+  - script: |
+      cd ui
+      npm install
+    displayName: Npm Install
+
+  - script: |
+      cd ui
+      npm run build
+    displayName: Npm Build
+ 
+  # - task: AzureRmWebAppDeployment@4
+  #   inputs:
+  #     ConnectionType: 'AzureRM'
+  #     azureSubscription: 'FireNormative'
+  #     appType: 'webAppLinux'
+  #     WebAppName: 'wa-nbc-architect-ui-dev'
+  #     packageForLinux: '$(System.DefaultWorkingDirectory)/ui/dist'
+
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: 'FireNormative'
+      appType: 'webAppLinux'
+      appName: 'wa-nbc-architect-ui-dev'
+      package: '$(System.DefaultWorkingDirectory)/ui/dist'
+      runtimeStack: 'NODE|16-lts'
+      customWebConfig: '-Handler iisnode -NodeStartFile server.js -appType node'
